@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    
+Array.prototype.myforEach = function (fn) {
+  var arr = this,
+    len = arr.length,
+    arg2 = arguments[1] || window;
+  for (var i = 0; i < len; i++) {
+    fn.apply(arg2, [arr[i], i, arr])
+  }
+}
+
+var arr = [
+  {
+    name:'a'
+  },
+  {
+    name:'b'
+  },
+  {
+    name:'c'
+  },
+]
+arr.myforEach(function(item,i,arr) {
+  console.log(item,i,arr);
+  console.log(item.name); // a b c
+  console.log(this); //window
+})
+arr.myforEach(function(item,i) {
+  console.log(this[i].name); // a b c
+},arr)
+  </script>
+</body>
+</html>

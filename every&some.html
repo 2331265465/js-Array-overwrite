@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    Array.prototype.myEvery = function (fn) {
+      var that = this,
+        len = that.length,
+        arg = arguments[1] || window,
+        flag = true
+      for (var i = 0; i < len; i++) {
+        if (!fn.apply(arg, [that[i], i, that])) {
+          flag = false
+          break
+        }
+      }
+      return flag
+
+    }
+
+    Array.prototype.mySome = function (fn) {
+          var that = this,
+          len = that.length,
+          arg = arguments[1] || window,
+          flag = false
+          for (var i = 0; i < len; i++) {
+            if(fn.apply(arg,[that[i],i,that])) {
+              flag = true
+              break
+            }
+          }
+          return flag
+      }
+  </script>
+</body>
+
+</html>

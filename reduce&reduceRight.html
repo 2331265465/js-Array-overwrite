@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+    Array.prototype.myReduce = function (fn) {
+      var that = this,
+        len = that.length,
+        arg = arguments[1] || null,
+        item;
+      for (var i = 0; i < len; i++) {
+        item = JSON.parse(JSON.stringify(that[i])) //深拷贝
+        arg = fn.apply(null, [arg, item, i, that])
+      }
+      return arg
+    }
+    var arr = [5, 5, 2]
+    var str = 'aa=safasfaf123; bb=asfagfag3216; cc=afasf756'
+    var nArr = str.split('; ')
+    var result = arr.myReduce(function (prev, item, index, arr) {
+      return prev + item
+    })
+    var result = nArr.myReduce(function (prev, item, index, arr) {
+      var it = item.split('=')
+      prev[it[0]] = it[1]
+      return prev
+    }, {})
+    console.log(result);
+    var res2 = arr.reduce(function (prev, item, index, arr) {
+      return prev + item
+    })
+    // console.log(res2);
+
+    Array.prototype.myReduceRight = function (fn) {
+      var that = this,
+        len = that.length,
+        arg = arguments[1] || null,
+        item;
+      for (var i = len - 1; i >= 0; i--) {
+        item = JSON.parse(JSON.stringify(that[i])) //深拷贝
+        arg = fn.apply(null, [arg, item, i, that])
+
+      }
+      return arg
+    }
+    var aa = nArr.myReduceRight(function (prev, item, index, arr) {
+      console.log(item);
+      var it = item.split('=')
+      prev[it[0]] = it[1]
+      return prev
+    }, {})
+    console.log(aa);
+  </script>
+</body>
+
+</html>

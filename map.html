@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    Array.prototype.myMap = function(fn) {
+      var arr = this,
+      len = arr.length,
+      arg2 = arguments[1] || window;
+      nArr = [],
+      item;
+      for (var i = 0; i < len; i++) {
+        item = JSON.parse(JSON.stringify(arr[i]))
+        nArr.push(fn.apply(arg2,[item,i,arr]))
+      }
+      return nArr
+    }
+  </script>
+</body>
+</html>
