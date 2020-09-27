@@ -11,13 +11,13 @@
 
   <script>
     Array.prototype.myReduce = function (fn) {
-      var that = this,
-        len = that.length,
+      var arr = this,
+        len = arr.length,
         arg = arguments[1] || null,
         item;
       for (var i = 0; i < len; i++) {
-        item = JSON.parse(JSON.stringify(that[i])) //深拷贝
-        arg = fn.apply(null, [arg, item, i, that])
+        item = JSON.parse(JSON.stringify(arr[i])) //深拷贝
+        arg = fn.apply(null, [arg, item, i, arr])
       }
       return arg
     }
@@ -39,13 +39,13 @@
     // console.log(res2);
 
     Array.prototype.myReduceRight = function (fn) {
-      var that = this,
-        len = that.length,
+      var arr = this,
+        len = arr.length,
         arg = arguments[1] || null,
         item;
       for (var i = len - 1; i >= 0; i--) {
-        item = JSON.parse(JSON.stringify(that[i])) //深拷贝
-        arg = fn.apply(null, [arg, item, i, that])
+        item = JSON.parse(JSON.stringify(arr[i])) //深拷贝
+        arg = fn.apply(null, [arg, item, i, arr])
 
       }
       return arg

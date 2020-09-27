@@ -11,10 +11,11 @@
 Array.prototype.myforEach = function (fn) {
   var arr = this,
     len = arr.length,
-    arg2 = arguments[1] || window;
-  for (var i = 0; i < len; i++) {
-    fn.apply(arg2, [arr[i], i, arr])
-  }
+    arg = arguments[1] || window;
+    for (var i = 0; i < len; i++) {
+      fn.apply(arg, [arr[i], i, arr])
+    }
+  
 }
 
 var arr = [
@@ -28,6 +29,7 @@ var arr = [
     name:'c'
   },
 ]
+var arr2 = []
 arr.myforEach(function(item,i,arr) {
   console.log(item,i,arr);
   console.log(item.name); // a b c

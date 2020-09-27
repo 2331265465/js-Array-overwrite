@@ -10,12 +10,12 @@
     Array.prototype.myMap = function(fn) {
       var arr = this,
       len = arr.length,
-      arg2 = arguments[1] || window;
+      arg = arguments[1] || window;
       nArr = [],
       item;
       for (var i = 0; i < len; i++) {
         item = JSON.parse(JSON.stringify(arr[i]))
-        nArr.push(fn.apply(arg2,[item,i,arr]))
+        nArr.push(fn.apply(arg,[item,i,arr]))
       }
       return nArr
     }
